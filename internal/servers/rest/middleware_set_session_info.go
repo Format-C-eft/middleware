@@ -10,8 +10,7 @@ import (
 	"github.com/mssola/user_agent"
 )
 
-// AddSessionInfo - add session info to gin context
-func AddSessionInfo() gin.HandlerFunc {
+func addSessionInfo() gin.HandlerFunc {
 	return func(ginContext *gin.Context) {
 
 		// This will work if the service is hidden behind Apache or nginx and in the settings

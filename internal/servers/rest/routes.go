@@ -13,7 +13,7 @@ func initRoutes(router *gin.Engine, cfg *config.Config) {
 	router.GET(cfg.Services.Rest.Path+"/check-login", api.CheckLogin)
 
 	groupJWT := router.Group(cfg.Services.Rest.Path)
-	groupJWT.Use(CheckBearerAuth())
+	groupJWT.Use(checkBearerAuth())
 	groupJWT.DELETE("auth", api.LogOut)
 
 	groupSession := groupJWT.Group("sessions")

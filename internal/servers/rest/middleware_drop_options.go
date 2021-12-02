@@ -6,8 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// AbortMetodOption - abort method options
-func AbortMetodOption() gin.HandlerFunc {
+func abortMetodOption() gin.HandlerFunc {
 	return func(ginContext *gin.Context) {
 		if ginContext.Request.Method == http.MethodOptions {
 			ginContext.AbortWithStatus(http.StatusOK)

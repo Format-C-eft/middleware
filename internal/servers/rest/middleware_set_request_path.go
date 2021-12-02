@@ -7,8 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// ClearPath - clear request path
-func ClearPath() gin.HandlerFunc {
+func clearPath() gin.HandlerFunc {
 	return func(ginContext *gin.Context) {
 		cfg := config.GetConfigInstance()
 

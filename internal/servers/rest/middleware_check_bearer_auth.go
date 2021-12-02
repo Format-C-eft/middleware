@@ -12,8 +12,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// CheckBearerAuth - check bearer auth
-func CheckBearerAuth() gin.HandlerFunc {
+func checkBearerAuth() gin.HandlerFunc {
 	return func(ginContext *gin.Context) {
 
 		cfg := config.GetConfigInstance()

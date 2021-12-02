@@ -31,7 +31,7 @@ func GetNotSugaredLogger() *zap.Logger {
 func InitLogger(cfg *config.Config) (syncFn func()) {
 
 	EncoderConfig := zap.NewProductionEncoderConfig()
-	LogLevel := zap.InfoLevel
+	LogLevel := zap.WarnLevel
 
 	if cfg.Project.Debug {
 		EncoderConfig = zap.NewDevelopmentEncoderConfig()
@@ -75,7 +75,7 @@ func StrToZapLevel(str string) (zapcore.Level, bool) {
 	case "error":
 		return zapcore.ErrorLevel, true
 	default:
-		return zapcore.InfoLevel, false
+		return zapcore.WarnLevel, false
 	}
 }
 

@@ -29,11 +29,12 @@ func NewRestServer() (*restServer, error) {
 			ginhttp.OperationNameFunc(tracer.OperationSetName),
 		),
 	)
-	router.Use(SetHeaders())
-	router.Use(AbortMetodOption())
-	router.Use(AddSessionInfo())
-	router.Use(ClearPath())
-	router.Use(IncMetrics())
+	router.Use(changeLoggerLevel())
+	router.Use(setHeaders())
+	router.Use(abortMetodOption())
+	router.Use(addSessionInfo())
+	router.Use(clearPath())
+	router.Use(incMetrics())
 
 	initRoutes(router, &cfg)
 

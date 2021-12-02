@@ -7,8 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// SetHeaders - set headers for CORS
-func SetHeaders() gin.HandlerFunc {
+func setHeaders() gin.HandlerFunc {
 	return func(ginContext *gin.Context) {
 		cfg := config.GetConfigInstance()
 

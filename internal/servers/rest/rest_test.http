@@ -18,6 +18,7 @@ GET http://{{host}}/{{defaulPatch}}/auth
 Authorization: Basic {{basicAuth}}
 Content-Type: {{contentType}}
 Origin: {{origin}}
+log-level: debug
 
 ###
 @token = {{login.response.body.data.token}}
@@ -27,12 +28,14 @@ DELETE http://{{host}}/{{defaulPatch}}/auth
 Authorization: Bearer {{token}}
 Content-Type: {{contentType}}
 Origin: {{origin}}
+log-level: debug
 
 ###
 GET http://{{host}}/{{defaulPatch}}/check-login
 Authorization: Basic {{basicAuth}}
 Content-Type: {{contentType}}
 Origin: {{origin}}
+log-level: debug
 
 ###
 # @name session
@@ -40,21 +43,24 @@ GET http://{{host}}/{{defaulPatch}}/sessions?active=true
 Authorization: Bearer {{token}}
 Content-Type: {{contentType}}
 Origin: {{origin}}
+log-level: debug
 
 ###
 @sessionID = {{session.response.body.data.items[0].sessionID}}
 
 ###
-GET http://{{host}}/{{defaulPatch}}/sessions/:{{sessionID}}
+GET http://{{host}}/{{defaulPatch}}/sessions/{{sessionID}}
 Authorization: Bearer {{token}}
 Content-Type: {{contentType}}
 Origin: {{origin}}
+log-level: debug
 
 ###
 GET http://{{host}}/{{defaulPatch}}/organizations
 Authorization: Bearer {{token}}
 Content-Type: {{contentType}}
 Origin: {{origin}}
+log-level: debug
 
 @filterOrg = filter={"organizationID": "2a29b1a9-26ef-11e8-80e6-0025904f970f"}
 
@@ -63,3 +69,4 @@ GET http://{{host}}/{{defaulPatch}}/organizations?{{filterOrg}}
 Authorization: Bearer {{token}}
 Content-Type: {{contentType}}
 Origin: {{origin}}
+log-level: debug

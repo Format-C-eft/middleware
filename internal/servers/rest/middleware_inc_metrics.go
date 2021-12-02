@@ -13,8 +13,7 @@ var (
 	}, []string{"name", "method"})
 )
 
-// IncMetrics - inc metrics
-func IncMetrics() gin.HandlerFunc {
+func incMetrics() gin.HandlerFunc {
 	return func(ginContext *gin.Context) {
 
 		methods.WithLabelValues(ginContext.Request.URL.Path, ginContext.Request.Method).Inc()
