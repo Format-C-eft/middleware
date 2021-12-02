@@ -1,0 +1,65 @@
+@hostname = localhost
+@port = 8000
+@host = {{hostname}}:{{port}}
+@defaulPatch = api/web
+@contentType = application/json
+@basicAuth = london:london
+@origin = http://127.0.0.1
+
+###
+OPTIONS  http://{{host}}/{{defaulPatch}}/auth
+Authorization: Basic {{basicAuth}}
+Content-Type: {{contentType}}
+Origin: {{origin}}
+
+###
+# @name login
+GET http://{{host}}/{{defaulPatch}}/auth
+Authorization: Basic {{basicAuth}}
+Content-Type: {{contentType}}
+Origin: {{origin}}
+
+###
+@token = {{login.response.body.data.token}}
+
+###
+DELETE http://{{host}}/{{defaulPatch}}/auth
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+Origin: {{origin}}
+
+###
+GET http://{{host}}/{{defaulPatch}}/check-login
+Authorization: Basic {{basicAuth}}
+Content-Type: {{contentType}}
+Origin: {{origin}}
+
+###
+# @name session
+GET http://{{host}}/{{defaulPatch}}/sessions?active=true
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+Origin: {{origin}}
+
+###
+@sessionID = {{session.response.body.data.items[0].sessionID}}
+
+###
+GET http://{{host}}/{{defaulPatch}}/sessions/:{{sessionID}}
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+Origin: {{origin}}
+
+###
+GET http://{{host}}/{{defaulPatch}}/organizations
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+Origin: {{origin}}
+
+@filterOrg = filter={"organizationID": "2a29b1a9-26ef-11e8-80e6-0025904f970f"}
+
+###
+GET http://{{host}}/{{defaulPatch}}/organizations?{{filterOrg}}
+Authorization: Bearer {{token}}
+Content-Type: {{contentType}}
+Origin: {{origin}}

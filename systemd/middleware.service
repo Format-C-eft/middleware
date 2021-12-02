@@ -1,0 +1,18 @@
+[Unit]
+Description=Middleware for 1C
+After=network.target
+
+[Service]
+Environment=HOME=/opt/middleware
+WorkingDirectory=/opt/middleware
+; ExecStartPre=
+ExecStart=/opt/middleware/middleware -config=/opt/middleware/config/config.yml
+; ExecStop=
+; ExecReload=
+Restart=always
+RestartSec=5
+StartLimitInterval=500
+StartLimitBurst=100
+
+[Install]
+WantedBy=multi-user.target

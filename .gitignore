@@ -1,0 +1,10 @@
+bin
+__debug_bin
+.DS_Store
+.vscode
+
+logs
+*.log
+config.yml
+.out
+.env

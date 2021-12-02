@@ -1,0 +1,50 @@
+project:
+  name: Middleware for 1C
+  debug: false
+  token:
+    password: PleaseChangeMeNow
+services:
+  rest:
+    host: 0.0.0.0
+    port: 8000
+    path: /api/web
+    accessOrigin:
+      - http://localhost
+      - http://127.0.0.1
+  status:
+    host: 0.0.0.0
+    port: 8001
+    versionPath: /version
+    livenessPath: /live
+    readinessPath: /ready
+  metrics:
+    host: 0.0.0.0
+    port: 9100
+    path: /metrics
+servers:
+  oneC:
+    path: http://server1C/baseName/hs/api
+    maxTimeout: 10s
+    user:
+      login: chekLogin
+      password: chekLogin
+    routes:
+      - employees
+      - organizations
+      - specialists
+      - import
+      - export
+  jaeger:
+    use: true
+    service: Middleware-1C
+    host: jaeger
+    port: :6831
+database:
+  cachedb:
+    host: cacheDB:6379
+    db: 0
+    password:
+    keysTimeExpires:
+      session: 200s
+      user: 168h
+      cookie: 336h
